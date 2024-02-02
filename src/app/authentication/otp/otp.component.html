@@ -1,0 +1,10 @@
+<div >
+    <h1>ENTER THE OTP</h1>
+    <form (ngSubmit)="onSubmit()">
+        <div >
+          <input type="text" maxlength="6" minlength="6" [(ngModel)]="otpDigits" name="otp">
+        </div>
+            <button type="submit">Submit OTP</button>
+    </form>
+    
+</div>

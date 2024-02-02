@@ -17,4 +17,12 @@ export class apiCall {
 
     return this.http.post<any>(endpoint, userData, { headers });
   }
+
+  verifyOtp(data:any):Observable<any>{
+    const endpoint = `${this.apiUrl}/verifyOtp`; 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.http.post<any>(endpoint, data, { headers });
+  
+  }
 }

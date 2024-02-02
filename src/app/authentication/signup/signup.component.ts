@@ -9,17 +9,28 @@ import { apiCall } from 'src/app/services/apicalls.service';
 })
 export class SignupComponent {
 
+  response!:any
+  form!:any
+
   constructor(private apiCallService: apiCall) { }
+
+  checkPasswordMatch(){
+
+  }
+  
 
 
   onSubmit(form: NgForm): void {
     console.log(form.value);
+    this.form=form.value
 
     this.apiCallService.createUser(form.value)
       .subscribe(
         response => {
           // Handle successful registration response
           console.log('User registered successfully', response);
+          this.response=response
+          
         },
         error => {
           // Handle registration error

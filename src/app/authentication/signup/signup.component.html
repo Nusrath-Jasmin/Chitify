@@ -1,4 +1,4 @@
-<div>
+<div >
   <h2>Signup Form</h2>
   <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
     <div>
@@ -15,16 +15,16 @@
     </div>
     <div>
       <label for="password">Password:</label>
-      <input type="password" id="password" name="password" [(ngModel)]="signupForm.value['password']" required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}">
-      <div *ngIf="signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)">
-        <small>Password must be at least 8 characters long and include at least one letter and one number.</small>
+      <input type="password" id="password" name="password" [(ngModel)]="signupForm.value['password']" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+      <div *ngIf="signupForm.controls['password']?.invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)">
+        <small>Password must be 8 characters  and include uppercase & lowerase letters,number & a special character.</small>
       </div>
     </div>
     <div>
       <label for="confirmPassword">Confirm Password:</label>
-      <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="signupForm.value['confirmPassword']" required>
-      <div *ngIf="signupForm.controls['confirmPassword'].invalid && (signupForm.controls['confirmPassword'].dirty || signupForm.controls['confirmPassword'].touched)">
-        <small>Passwords do not match.</small>
+      <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="signupForm.value['confirmPassword']" required (blur)="checkPasswordMatch()">
+      <div *ngIf="signupForm.controls['confirmPassword']?.value!=signupForm.controls['password']?.value && signupForm.controls['password'].touched">
+        <small>Passwords do not match</small>
       </div>
     </div>
     <div>
@@ -34,3 +34,12 @@
     <button type="submit" [disabled]="signupForm.invalid">Submit</button>
   </form>
 </div>
+
+<div>
+<p style="color: red;" *ngIf="response?.exist">{{response?.message}}</p>
+<p  [ngClass]="{'green-text': response?.otpsend}">{{response?.message}}</p>
+
+<p>you are already signup ? <a href="">please login</a></p>
+</div>
+
+<app-otp *ngIf="response?.otpsend" [userData]=form></app-otp>
