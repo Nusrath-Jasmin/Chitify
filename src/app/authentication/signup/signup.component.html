@@ -1,45 +1,119 @@
-<div >
-  <h2>Signup Form</h2>
-  <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
-    <div>
-      <label for="firstName">First Name:</label>
-      <input type="text" id="firstName" name="firstName" [(ngModel)]="signupForm.value['firstName']" required>
-    </div>
-    <div>
-      <label for="lastName">Last Name:</label>
-      <input type="text" id="lastName" name="lastName" [(ngModel)]="signupForm.value['lastName']" required>
-    </div>
-    <div>
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" [(ngModel)]="signupForm.value['email']" required>
-    </div>
-    <div>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" [(ngModel)]="signupForm.value['password']" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
-      <div *ngIf="signupForm.controls['password']?.invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)">
-        <small>Password must be 8 characters  and include uppercase & lowerase letters,number & a special character.</small>
+<div class="w-screen h-screen flex items-center justify-center">
+  <div
+    class="w-full h-full md:w-2/3 md:h-3/4 md:shadow-xl md:shadow-black md:border-black md:flex space-y-10 md:space-y-0"
+  >
+    <div
+      class="w-full h-10 md:w-1/3 md:h-full bg-white flex flex-col items-center"
+    >
+      <img
+        src="../../../assets/images/chitify-high-resolution-logo-black-transparent.svg"
+        alt=""
+        class="w-20 md:w-36 md:p-5"
+      />
+      <div
+        class="md:flex md:items-center md:justify-evenly md:flex-col md:mt-28 mt-0 h-1/4"
+      >
+        <h2 class="text-3xl font-extrabold text-blue-950">Signup</h2>
       </div>
     </div>
-    <div>
-      <label for="confirmPassword">Confirm Password:</label>
-      <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="signupForm.value['confirmPassword']" required (blur)="checkPasswordMatch()">
-      <div *ngIf="signupForm.controls['confirmPassword']?.value!=signupForm.controls['password']?.value && signupForm.controls['password'].touched">
-        <small>Passwords do not match</small>
-      </div>
+    <div
+      class="w-full h-full md:w-2/3 md:h-full bg-blue-950 flex items-center justify-center"
+    >
+      <form
+        #signupForm="ngForm"
+        (ngSubmit)="onSubmit(signupForm)"
+        class="flex flex-col justify-around items-center w-full h-3/4"
+      >
+        <input
+          type="text"
+          id="firstName"
+          name="firstName"
+          placeholder="First Name"
+          [(ngModel)]="signupForm.value['firstName']"
+          required
+          class="p-3 w-3/4 shadow-lg shadow-blue-900"
+        />
+        <input
+          type="text"
+          id="lastName"
+          name="lastName"
+          placeholder="Last Name"
+          [(ngModel)]="signupForm.value['lastName']"
+          required
+          class="p-3 w-3/4 shadow-lg shadow-blue-900"
+        />
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="E-mail"
+          [(ngModel)]="signupForm.value['email']"
+          required
+          class="p-3 w-3/4 shadow-lg shadow-blue-900"
+        />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          [(ngModel)]="signupForm.value['password']"
+          required
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+          class="p-3 w-3/4 shadow-lg shadow-blue-900"
+        />
+        <small
+          *ngIf="
+            signupForm.controls['password']?.invalid &&
+            (signupForm.controls['password'].dirty ||
+              signupForm.controls['password'].touched)
+          "
+          class="text-white px-4"
+          >Password must be 8 characters and include uppercase & lowerase
+          letters,number & a special character.</small
+        >
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          placeholder="Confirm Passsword"
+          [(ngModel)]="signupForm.value['confirmPassword']"
+          required
+          (blur)="checkPasswordMatch()"
+          class="p-3 w-3/4 shadow-lg shadow-blue-900"
+        />
+        <small
+          *ngIf="
+            signupForm.controls['confirmPassword']?.value !=
+              signupForm.controls['password']?.value &&
+            signupForm.controls['confirmPassword'].touched
+          "
+          class="text-white"
+          >Passwords do not match</small
+        >
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="Phone"
+          [(ngModel)]="signupForm.value['phone']"
+          required
+          class="p-3 w-3/4 shadow-lg shadow-blue-900"
+        />
+        <button
+          type="submit"
+          [disabled]="signupForm.invalid"
+          class="p-3 w-3/4 bg-blue-300 text-blue-950 font-bold shadow-md shadow-black"
+        >
+          Submit
+        </button>
+        <p class="text-white mt-4">
+          Already have an account?<a href="" class="underline mt-96">Login</a>
+          Here
+        </p>
+        <p style="color: red" *ngIf="response?.exist">
+          {{ response?.message }}
+        </p>
+      </form>
     </div>
-    <div>
-      <label for="phone">Phone:</label>
-      <input type="tel" id="phone" name="phone" [(ngModel)]="signupForm.value['phone']" required>
-    </div>
-    <button type="submit" [disabled]="signupForm.invalid">Submit</button>
-  </form>
+  </div>
 </div>
-
-<div>
-<p style="color: red;" *ngIf="response?.exist">{{response?.message}}</p>
-<p  [ngClass]="{'green-text': response?.otpsend}">{{response?.message}}</p>
-
-<p>you are already signup ? <a href="">please login</a></p>
-</div>
-
-<app-otp *ngIf="response?.otpsend" [userData]=form></app-otp>

@@ -23,6 +23,12 @@ export class apiCall {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     return this.http.post<any>(endpoint, data, { headers });
-  
+  }
+
+  loginUser(data:any):Observable<any>{
+    const endpoint = `${this.apiUrl}/login`; 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.http.post<any>(endpoint, data, { headers });
   }
 }
