@@ -8,6 +8,7 @@ import { OtpComponent } from 'src/app/authentication/otp/otp.component';
 import { LoginComponent } from 'src/app/authentication/login/login.component';
 import { SignupdataService } from 'src/app/services/signupdata.service';
 import { AuthGuard } from 'src/app/services/authGuard.service';
+import { ForgotPasswordComponent } from 'src/app/authentication/forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AuthGuard } from 'src/app/services/authGuard.service';
    declarations: [
     SignupComponent,
     OtpComponent,
-    LoginComponent
+    LoginComponent,
+    ForgotPasswordComponent,
   ],
   providers:[
     SignupdataService,

@@ -31,4 +31,32 @@ export class apiCall {
 
     return this.http.post<any>(endpoint, data, { headers });
   }
+
+  confirmEmail():Observable<any>{
+    const endpoint = `${this.apiUrl}/user/confirmEmail`; 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.http.post<any>(endpoint,{ headers });
+  }
+
+  verifyEmailOtp(data:any):Observable<any>{
+    const endpoint = `${this.apiUrl}/user/verifyEmailOtp`; 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.http.post<any>(endpoint, data, { headers});
+  }
+
+  checkEmailverifiedOrNot():Observable<any>{
+    const endpoint = `${this.apiUrl}/user/checkEmailverifiedOrNot`; 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.http.get<any>(endpoint, { headers});
+  }
+
+  forgotPassword():Observable<any>{
+    const endpoint = `${this.apiUrl}/user/`; 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.http.get<any>(endpoint, { headers});
+  }
 }

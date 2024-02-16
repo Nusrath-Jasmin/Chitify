@@ -18,6 +18,7 @@ export class LoginComponent {
   ) {}
   error!: boolean;
 
+
   onSubmit(form: NgForm) {
     console.log('Form submitted!');
 

@@ -6,10 +6,12 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   constructor() {}
 
+  private tokenKey!:string
+
   saveToken(token: string) {
     localStorage.setItem('token', token);
     console.log("token saved");
-    
+    this.tokenKey=token
   }
 
   isAuthenticated(): boolean {
@@ -32,4 +34,9 @@ export class AuthService {
     }
     return ''; // Return empty string if token is not present
   }
+
+  destroyToken(): void {
+    localStorage.removeItem(this.tokenKey);
+  }
+  
 }
