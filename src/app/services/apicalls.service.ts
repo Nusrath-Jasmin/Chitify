@@ -32,6 +32,27 @@ export class apiCall {
     return this.http.post<any>(endpoint, data, { headers });
   }
 
+  forgotPassword(data:any):Observable<any>{
+    const endpoint = `${this.apiUrl}/forgotPassword`; 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.http.post<any>(endpoint,data, { headers});
+  }
+
+  VerifyUser(data:any):Observable<any>{
+    const endpoint = `${this.apiUrl}/verify-user`; 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.http.post<any>(endpoint,data, { headers});
+  }
+
+  UpdatePassword(data:any):Observable<any>{
+    const endpoint = `${this.apiUrl}/update-password`; 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.http.post<any>(endpoint,data, { headers});
+  }
+
   confirmEmail():Observable<any>{
     const endpoint = `${this.apiUrl}/user/confirmEmail`; 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -53,10 +74,5 @@ export class apiCall {
     return this.http.get<any>(endpoint, { headers});
   }
 
-  forgotPassword():Observable<any>{
-    const endpoint = `${this.apiUrl}/user/`; 
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-    return this.http.get<any>(endpoint, { headers});
-  }
+ 
 }

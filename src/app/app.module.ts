@@ -11,7 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 
 @NgModule({
-  declarations: [AppComponent, FooterComponent, HomeComponent,   ],
+  declarations: [AppComponent, FooterComponent, HomeComponent,    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,0 +1,67 @@
+<form [formGroup]="forgotPasswordForm">
+  <div class="flex justify-center items-center h-screen">
+    <div
+      class="bg-blue-950 p-6 rounded-lg shadow-md flex items-center justify-center flex-col"
+    >
+      <p class="text-white p-2">One time password sent to your phone</p>
+      <h2 class="text-2xl font-semibold mb-4 text-blue-200">Enter OTP</h2>
+      <div class="flex items-center justify-center mb-4">
+        <input
+          formControlName="otp1"
+          #otp1
+          type="text"
+          class="border border-gray-300 rounded-md px-4 py-2 mr-2 w-12 text-center"
+          maxlength="1"
+          (input)="moveToNext(otp2)"
+        />
+        <input
+          formControlName="otp2"
+          #otp2
+          type="text"
+          class="border border-gray-300 rounded-md px-4 py-2 mr-2 w-12 text-center"
+          maxlength="1"
+          (input)="moveToNext(otp3)"
+        />
+        <input
+          formControlName="otp3"
+          #otp3
+          type="text"
+          class="border border-gray-300 rounded-md px-4 py-2 mr-2 w-12 text-center"
+          maxlength="1"
+          (input)="moveToNext(otp4)"
+        />
+        <input
+          formControlName="otp4"
+          #otp4
+          type="text"
+          class="border border-gray-300 rounded-md px-4 py-2 mr-2 w-12 text-center"
+          maxlength="1"
+          (input)="moveToNext(otp5)"
+        />
+        <input
+          formControlName="otp5"
+          #otp5
+          type="text"
+          class="border border-gray-300 rounded-md px-4 py-2 mr-2 w-12 text-center"
+          maxlength="1"
+          (input)="moveToNext(otp6)"
+        />
+        <input
+        formControlName="otp6"
+        #otp6
+        type="text"
+        class="border border-gray-300 rounded-md px-4 py-2 mr-2 w-12 text-center"
+        maxlength="1"
+      />
+      </div>
+      <button
+        type="button"
+        (click)="submitOtp()"
+        class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
+      >
+        Submit
+      </button>
+      <p *ngIf="otpError" class="text-white">Incorrect OTP</p>
+    </div>
+  </div>
+</form>

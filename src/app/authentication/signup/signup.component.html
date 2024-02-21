@@ -107,7 +107,7 @@
           Submit
         </button>
         <p class="text-white mt-4">
-          Already have an account?<a href="" class="underline mt-96">Login</a>
+          Already have an account?<a [routerLink]="'/login'" class="underline mt-96">Login</a>
           Here
         </p>
         <p style="color: red" *ngIf="response?.exist">

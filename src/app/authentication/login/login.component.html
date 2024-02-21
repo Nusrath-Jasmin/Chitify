@@ -14,7 +14,7 @@
       <img src="../../../assets/images/log2.jpg" alt="" class=" w-48 md:w-[60%]">
     </div>
     <div class="w-full h-2/3 md:w-1/2 md:h-full flex flex-col items-center justify-evenly md:justify-around">
-      <div class="text-[10px] w-full flex justify-end p-3 md:p-3 md:text-[16px]">New User ?<a href=""></a>Signup</div>
+      <div class="text-[10px] w-full flex justify-end p-3 md:p-3 md:text-[16px]">New User ?<a [routerLink]="'/signup'" class="font-bold">Signup</a></div>
       <div class="w-full flex justify-start flex-col px-10  md:flex-none">
         <h3 class="font-bold text-lg md:text-3xl">Welcome Back !</h3>
         <small>Login to continue.</small>
@@ -26,7 +26,7 @@
           (ngSubmit)="onSubmit(loginForm)"
         >
             <input
-              type="text"
+              type="number"
               id="phone"
               name="phone"
               ngModel
