@@ -1,0 +1,59 @@
+<div class="container mx-auto">
+  <h2 class="text-2xl font-semibold mb-4">List of Chitties</h2>
+  <table class="min-w-full divide-y divide-gray-200">
+    <thead class="bg-gray-50">
+      <tr>
+        <th
+          scope="col"
+          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+        >
+          Chit Name
+        </th>
+        <th
+          scope="col"
+          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+        >
+          Details
+        </th>
+        <th
+          scope="col"
+          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+        >
+          Total Amount
+        </th>
+        <th
+          scope="col"
+          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+        >
+          Action
+        </th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+      <tr *ngFor="let chitty of chitties">
+        <td class="px-6 py-4 whitespace-nowrap">{{ chitty.chitName }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          Duration:{{ chitty.duration }} <br />
+          Monthly Payment:{{chitty.monthlyPayment}} <br>
+          No of Participants:{{chitty.participants}} <br>
+          Starting Date:{{chitty.startDate}}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ chitty.totalAmount }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <button
+          [ngClass]="{
+            'bg-blue-500': chitty.isParticipant,
+            'bg-yellow-500': chitty.isRequested,
+            'bg-gray-500': !(chitty.isParticipant || chitty.isRequested)
+          }" 
+              [disabled]="chitty.isParticipant || chitty.isRequested"
+              (click)="submit(chitty._id)"
+            class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+          >
+          {{ chitty.isParticipant ? 'Joined' : chitty.isRequested ? 'Requested' : 'Join'}}
+        </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

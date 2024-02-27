@@ -1,0 +1,64 @@
+<div *ngIf="!submitted && !owner" class="w-full flex items-center justify-center flex-col ">
+  <h1 class="text-2xl text-blue-950 font-bold">Fill the Following</h1>
+  <form class="w-full flex items-center justify-center" #addressForm="ngForm" (ngSubmit)="submitForm(addressForm) ">
+    <div class="w-3/4 border-[2px] border-black flex flex-col p-10 justify-center ">
+      <label for="street">Street Address</label>
+      <input
+        type="text"
+        id="street"
+        name="street"
+        ngModel
+        class="p-3 border-[2px] border-black rounded-md"
+        required
+      />
+      <label for="city">City</label>
+      <input
+        type="text"
+        id="city"
+        name="city"
+        ngModel
+        class="p-3 border-[2px] border-black rounded-md"
+        required
+      />
+      <label for="state">State</label>
+      <input
+        type="text"
+        id="state"
+        name="state"
+        ngModel
+        class="p-3 border-[2px] border-black rounded-md"
+        required
+      />
+      <label for="zip">PIN Code</label>
+      <input
+        type="text"
+        id="zip"
+        name="pin"
+        ngModel
+        class="p-3 border-[2px] border-black rounded-md"
+        required
+      />
+      <label for="country">Country</label>
+      <input
+        type="text"
+        id="country"
+        name="country"
+        ngModel
+        class="p-3 border-[2px] border-black rounded-md"
+        required
+      />
+    <button type="submit" class=" p-3 bg-purple-800 w-1/4 mt-2 rounded-md mx-auto">Submit</button>
+  </div>
+  </form>
+</div>
+
+<div *ngIf="!owner && submitted" class="w-full h-full shadow-lg shadow-black p-10 flex items-center justify-center flex-col">
+  <p>Request Submitted</p>
+  <p>Wait for Admin's Approval</p>
+</div>
+
+<div *ngIf="owner" class="w-full h-full shadow-lg shadow-black p-10 flex items-center justify-center flex-col">
+  <p>Hooray</p>
+  <p>Your Request For Chit Ownership has been Approved.</p>
+  <p>You can now start your own Chit.</p>
+</div>

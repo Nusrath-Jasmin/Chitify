@@ -1,0 +1,8 @@
+<div class=" p-5 bg-[#dfdfdf] shadow-[#878282] shadow-md rounded-lg flex items-center justify-between">
+    <div><i class="fa-solid fa-bars text-2xl"></i></div>
+    <div class="flex items-center gap-1">
+        <a  [routerLink]="['/admin/home/requests']" >Requests</a>
+        <div *ngIf="noOfRequest" class="w-5 h-5 bg-red-700 rounded-full text-white flex items-center justify-center">{{noOfRequest}}</div>
+    </div>
+    <button (click)="logout()">Logout</button>
+</div>
