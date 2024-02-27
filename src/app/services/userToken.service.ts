@@ -1,28 +1,28 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   constructor() {}
 
-  private tokenKey!:string
+  private tokenKey!: string;
 
   saveToken(token: string) {
     localStorage.setItem('token', token);
-    console.log("token saved");
-    this.tokenKey=token
+    console.log('token saved');
+    this.tokenKey = token;
   }
 
   isAuthenticated(): boolean {
-    console.log("user auth is ..."); 
+    console.log('user auth is ...');
     console.log(localStorage.getItem('token'));
     return !!localStorage.getItem('token');
   }
 
   getUserType(): string {
-    console.log("user type is ...");
-    
+    console.log('user type is ...');
+
     const token = localStorage.getItem('token');
     if (token) {
       try {
@@ -39,5 +39,4 @@ export class AuthService {
   destroyToken(): void {
     localStorage.removeItem(this.tokenKey);
   }
-  
 }

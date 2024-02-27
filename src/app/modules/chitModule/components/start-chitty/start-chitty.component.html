@@ -1,0 +1,53 @@
+<div class="container mx-auto p-4 flex items-center justify-center flex-col shadow-lg shadow-slate-500">
+    <h2 class="text-2xl font-semibold mb-4">Start a Chitty</h2>
+    <form (ngSubmit)="onsubmit(chittyForm)" #chittyForm="ngForm" class="max-w-md w-full ">
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+          <label for="chitName" class="block text-gray-700">Chit Name:</label>
+          <input type="text" id="chitName" name="chitName" class="mt-1 block w-full h-12 border-gray-300 rounded-md shadow-lg focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" ngModel required>
+        </div>
+        
+        <div>
+          <label for="duration" class="block text-gray-700">Duration (in months):</label>
+          <input type="number" id="duration" name="duration" class="mt-1 block w-full h-12 border-gray-300 rounded-md shadow-lg focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" ngModel required>
+        </div>
+        
+        <div>
+          <label for="totalAmount" class="block text-gray-700">Total Amount:</label>
+          <input type="number" id="totalAmount" name="totalAmount" class="mt-1 block w-full h-12 border-gray-300 rounded-md shadow-lg focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" ngModel required>
+        </div>
+        
+        <div>
+          <label for="monthlyPayment" class="block text-gray-700">Monthly Payment:</label>
+          <input type="number" id="monthlyPayment" name="monthlyPayment" class="mt-1 block w-full h-12 border-gray-300 rounded-md shadow-lg focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" ngModel required>
+        </div>
+        
+        <div>
+          <label for="participants" class="block text-gray-700">Number of Participants:</label>
+          <input type="number" id="participants" name="participants" class="mt-1 block w-full h-12 border-gray-300 rounded-md shadow-lg focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" ngModel required>
+        </div>
+        
+        <div>
+          <label>Chit Type:</label>
+          <div class="mt-1">
+            <input type="radio" id="public" name="chitType" value="public" class="h-4 w-4 text-indigo-600 border-gray-300" ngModel required>
+            <label for="public" class="ml-2 text-gray-700">Public</label>
+          </div>
+          <div class="mt-1">
+            <input type="radio" id="private" name="chitType" value="private" class="h-4 w-4 text-indigo-600 border-gray-300" ngModel required>
+            <label for="private" class="ml-2 text-gray-700">Private</label>
+          </div>
+        </div>
+        
+        <div>
+          <label for="startDate" class="block text-gray-700">Starting Date:</label>
+          <input type="date" id="startDate" name="startDate" class="mt-1 block w-full h-12 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" ngModel required>
+        </div>
+      </div>
+      
+      <div class="mt-6">
+        <button type="submit"  class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" [class]="buttonClass" >{{buttonText}}</button>
+      </div>
+    </form>
+  </div>
+  

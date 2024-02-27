@@ -8,10 +8,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
-import { TokenInterceptorService } from './services/token-interceptor.service';
+import { TokenInterceptorService } from './services/interceptor.service';
 
 @NgModule({
-  declarations: [AppComponent, FooterComponent, HomeComponent,    ],
+  declarations: [AppComponent, FooterComponent, HomeComponent,],
   imports: [
     BrowserModule,
     AppRoutingModule,

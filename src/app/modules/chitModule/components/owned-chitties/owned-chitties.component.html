@@ -1,0 +1,208 @@
+<div
+  *ngIf="!update"
+  class="w-full mx-auto flex items-center flex-col justify-center"
+>
+  <h2 class="text-2xl font-semibold mb-4">Chitties</h2>
+  <table *ngIf="!requestClicked" class="w-3/4">
+    <thead>
+      <tr>
+        <th class="border px-4 py-2"></th>
+        <th class="border px-4 py-2">Chit Details</th>
+        <th class="border px-4 py-2">Requests</th>
+        <th class="border px-4 py-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+      <tr *ngFor="let chitty of chitties; let i = index">
+        <td class="border px-4 py-2 text-center">{{ i + 1 }}</td>
+        <td class="border px-4 py-2 text-left text-base text-blue-700">
+          <p>Chit Name:{{ chitty.chitName }}</p>
+          <p>Chit Duratuon:{{ chitty.duration }}</p>
+          <p>Total Amount:{{ chitty.totalAmount }}</p>
+          <p>Monthly Payment:{{ chitty.monthlyPayment }}</p>
+          <p>No of Participants:{{ chitty.participants }}</p>
+          <p>Chit Type:{{ chitty.chitType }}</p>
+          <p>Start Date:{{ chitty.startDate }}</p>
+        </td>
+        <td>
+          <div class="flex items-center gap-1 cursor-pointer">
+            <a (click)="clicked(chitty.requests)" >Requests</a>
+            <div
+              class="w-5 h-5 bg-red-700 rounded-full text-white flex items-center justify-center cursor-pointer"
+            >
+              {{ noOfRequest }}
+            </div>
+          </div>
+        </td>
+        <td class="border px-4 py-2 text-center">
+          <button
+            (click)="updateChitty(chitty)"
+            class="mr-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+          >
+            Update
+          </button>
+          <button
+            (click)="deleteChitty(chitty._id, chitty.startDate)"
+            class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:bg-red-600"
+          >
+            Delete
+          </button>
+          <p *ngIf="message">Cant Delete Chit</p>
+        </td>
+      </tr>  
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="update">
+  <div
+    class="container mx-auto p-4 flex items-center justify-center flex-col shadow-lg shadow-slate-500"
+  >
+    <h2 class="text-2xl font-semibold mb-4">Update Chitty</h2>
+    <form
+      (ngSubmit)="onsubmit()"
+      [formGroup]="chittyForm"
+      class="max-w-md w-full"
+    >
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+          <label for="chitName" class="block text-gray-700">Chit Name:</label>
+          <input
+            type="text"
+            id="chitName"
+            formControlName="chitName"
+            value="{{ chitToUpdate?.chitName }}"
+            class="mt-1 block w-full h-12 border-gray-300 rounded-md shadow-lg focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="duration" class="block text-gray-700"
+            >Duration (in months):</label
+          >
+          <input
+            type="number"
+            id="duration"
+            formControlName="duration"
+            value="{{ chitToUpdate?.duration }}"
+            class="mt-1 block w-full h-12 border-gray-300 rounded-md shadow-lg focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="totalAmount" class="block text-gray-700"
+            >Total Amount:</label
+          >
+          <input
+            type="number"
+            id="totalAmount"
+            formControlName="totalAmount"
+            value="{{ chitToUpdate?.totalAmount }}"
+            class="mt-1 block w-full h-12 border-gray-300 rounded-md shadow-lg focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="monthlyPayment" class="block text-gray-700"
+            >Monthly Payment:</label
+          >
+          <input
+            type="number"
+            id="monthlyPayment"
+            formControlName="monthlyPayment"
+            value="{{ chitToUpdate?.monthlyPayment }}"
+            class="mt-1 block w-full h-12 border-gray-300 rounded-md shadow-lg focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="participants" class="block text-gray-700"
+            >Number of Participants:</label
+          >
+          <input
+            type="number"
+            id="participants"
+            formControlName="participants"
+            value="{{ chitToUpdate?.participants }}"
+            class="mt-1 block w-full h-12 border-gray-300 rounded-md shadow-lg focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            required
+          />
+        </div>
+
+        <div>
+          <label>Chit Type:</label>
+          <div class="mt-1">
+            <input
+              type="radio"
+              id="public"
+              formControlName="chitType"
+              value="public"
+              class="h-4 w-4 text-indigo-600 border-gray-300"
+              required
+            />
+            <label for="public" class="ml-2 text-gray-700">Public</label>
+          </div>
+          <div class="mt-1">
+            <input
+              type="radio"
+              id="private"
+              formControlName="chitType"
+              value="private"
+              class="h-4 w-4 text-indigo-600 border-gray-300"
+              required
+            />
+            <label for="private" class="ml-2 text-gray-700">Private</label>
+          </div>
+        </div>
+
+        <div>
+          <label for="startDate" class="block text-gray-700"
+            >Starting Date:</label
+          >
+          <input
+            type="date"
+            id="startDate"
+            formControlName="startDate"
+            value="{{ chitToUpdate?.startDate }}"
+            class="mt-1 block w-full h-12 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <button
+          type="submit"
+          class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          {{ buttonText }}
+        </button>
+      </div>
+    </form>
+    <p *ngIf="message">Failed to submit.Provide Valid Details</p>
+  </div>
+</div>
+
+
+    
+<div *ngIf="requestClicked" class="mt-4">
+  <div *ngFor="let request of requests" class="border border-gray-200 p-4 rounded-lg mb-4">
+    <p class="text-lg font-semibold">User ID: {{ request.id }}</p>
+    <div *ngIf="request.details" class="mt-2">
+      <p class="text-gray-700">First Name: {{ request.details.firstName }}</p>
+      <p class="text-gray-700">Last Name: {{ request.details.lastName }}</p>
+      <p class="text-gray-700">Email: {{ request.details.email }}</p>
+      <p class="text-gray-700">Phone: {{ request.details.phone }}</p>
+    </div>
+    <div class="mt-4">
+      <button (click)="accept(request.id)" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-600 mr-2">Accept</button>
+      <button (click)="reject(request.id)" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:bg-red-600">Reject</button>
+    </div>
+  </div>
+</div>
+
