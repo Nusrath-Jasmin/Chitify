@@ -1,0 +1,23 @@
+<h2 class="text-lg font-semibold mb-2">List of Joined Chits</h2>
+<div class="divide-y divide-gray-200">
+    <table class="w-full divide-y divide-gray-200 border-[2px] border-slate-400">
+        <thead>
+            <tr class="text-center">
+                <th class="px-4 py-2">No</th>
+                <th class="px-4 py-2">ChitId</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let item of list; let i = index;">
+                <tr class="text-center">
+                    <td class="px-4 py-2">{{i+1}}</td>
+                    <td class="px-4 py-2">Chit Name:{{item.chitName}} <br>
+                    Monthly Payment:{{item.monthlyPayment}} <br>
+                    Total Amount:{{item.totalAmount}} <br>
+                    Duration:{{item.duration}} <br>
+                    No of Participants:{{item.participants}}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

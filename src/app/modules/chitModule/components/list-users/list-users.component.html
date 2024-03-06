@@ -1,0 +1,20 @@
+<div  class="mt-4">
+    <h2>List Of Users</h2>
+    <ul class="divide-y divide-gray-200">
+      <li *ngFor="let userId of userlist" class="py-4 flex justify-between items-center">
+        <div class="flex items-center gap-16">
+          <a  class="text-blue-500 underline cursor-pointer" (click)="getUser(userId)">
+            User ID: {{ userId }}
+          </a>
+          <div *ngIf="user" class="mt-2">
+            <p class="text-gray-700">First Name: {{ user.firstName }}</p>
+            <p class="text-gray-700">Last Name: {{ user.lastName }}</p>
+            <p class="text-gray-700">Email: {{ user.email }}</p>
+            <p class="text-gray-700">Phone: {{ user.phone }}</p>
+          </div>
+          <button class="p-2 bg-purple-500 rounded-lg" (click)="remove(userId)">remove</button>
+          <p *ngIf="deleted">Cant remove User</p>
+        </div>
+      </li> 
+     </ul>
+  </div>

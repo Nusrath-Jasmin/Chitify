@@ -17,16 +17,17 @@ export class LoginComponent {
     private router: Router
   ) {}
   error!: boolean;
+  isLoading: boolean = false;
 
 
   onSubmit(form: NgForm) {
     console.log('Form submitted!');
-
+    this.isLoading=true
     this.apicall.loginUser(form.value).subscribe({
       next: (response) => {
         console.log("logined")
         this.authservice.saveToken(response.token);
-
+        this.isLoading=false
         if (this.authservice.isAuthenticated()) {
           if (this.authservice.getUserType() === 'user')
             this.router.navigate(['/user/home']);

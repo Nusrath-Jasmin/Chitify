@@ -1,14 +1,16 @@
     <div class="h-full  shadow-xl shadow-black rounded-xl overflow-hidden">
         <div class="h-1/4 w-full  flex items-center justify-center flex-col">
-            <img src="../../../assets/images/user.jpg" alt="" class="w-28 h-28 rounded-full">
-            <a href="">Edit Profile</a>
+            <img *ngIf="user && user.profilePicture"  [src]="user.profilePicture" alt="Profile Picture" class="w-28 h-28 rounded-full">
+            <img *ngIf="!user || !user.profilePicture" src="../../../assets/images/user.jpg" alt="Default Profile Picture" class="w-28 h-28 rounded-full">
+            <p>{{user?.firstName}}</p>
+            <a [routerLink]="['/user/home/update-profile']" class="text-blue-700 cursor-pointer">Edit Profile</a>
         </div>
         <div class="flex items-center flex-col p-5">
-            <a  class="p-5 shadow-[#dfdfdf] shadow-md rounded-xl text-lg w-52 text-center hover:bg-[#dfe0c9]">Owned Chitties</a><br>
-            <a  class="p-5 shadow-[#dfdfdf] shadow-md rounded-xl text-lg w-52 text-center hover:bg-[#dfe0c9]">Joined Chitties</a><br>
-            <a  class="p-5 shadow-[#dfdfdf] shadow-md rounded-xl text-lg w-52 text-center hover:bg-[#dfe0c9]">Open Chitties</a><br>
+            <a  [routerLink]="['/user/home/owned-chitties']"class="p-5 shadow-[#dfdfdf] shadow-md rounded-xl text-lg w-52 text-center hover:bg-[#dfe0c9]">Owned Chitties</a><br>
+            <a  [routerLink]="['/user/home/joined-chits']" class="p-5 shadow-[#dfdfdf] shadow-md rounded-xl text-lg w-52 text-center hover:bg-[#dfe0c9]">Joined Chitties</a><br>
+            <a  [routerLink]="['/user/home/open-chitties']" class="p-5 shadow-[#dfdfdf] shadow-md rounded-xl text-lg w-52 text-center hover:bg-[#dfe0c9]">Open Chitties</a><br>
             <a  (click)="beAnOwner()" class="p-5 shadow-[#dfdfdf] shadow-md rounded-xl text-lg w-52 text-center hover:bg-[#dfe0c9]">Be an Owner</a><br>
-            <a  class="p-5 shadow-[#dfdfdf] shadow-md rounded-xl text-lg w-52 text-center hover:bg-[#dfe0c9]">Start a Chitty</a>
+            <a  [routerLink]="['/user/home/start-chitty']" class="p-5 shadow-[#dfdfdf] shadow-md rounded-xl text-lg w-52 text-center hover:bg-[#dfe0c9]">Start a Chitty</a>
         </div>
     </div>
     

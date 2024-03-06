@@ -11,6 +11,8 @@ import { AuthGuard } from 'src/app/services/authGuard.service';
 import { ForgotPasswordComponent } from 'src/app/modules/authenticationModule/components/forgot-password/forgot-password.component';
 import { ForgotOtpComponent } from 'src/app/modules/authenticationModule/components/forgot-otp/forgot-otp.component';
 import { ResetPasswordComponent } from 'src/app/modules/authenticationModule/components/reset-password/reset-password.component';
+import { AppModule } from 'src/app/app.module';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { ResetPasswordComponent } from 'src/app/modules/authenticationModule/com
     ReactiveFormsModule,
     AuthenticationRoutingModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    // AppModule
   ],
    declarations: [
     SignupComponent,
@@ -28,7 +31,7 @@ import { ResetPasswordComponent } from 'src/app/modules/authenticationModule/com
     LoginComponent,
     ForgotPasswordComponent,
     ForgotOtpComponent, 
-    ResetPasswordComponent,
+    ResetPasswordComponent, SpinnerComponent,
   ],
   providers:[
     SignupdataService,

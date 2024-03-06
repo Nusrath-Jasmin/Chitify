@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { apiCall } from 'src/app/modules/chitModule/services/chit.service';
 
@@ -7,9 +7,20 @@ import { apiCall } from 'src/app/modules/chitModule/services/chit.service';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit{
 
+  user!:any
   constructor(private apicall:apiCall,private router:Router,private route:ActivatedRoute){}
+
+  ngOnInit(): void {
+    this.apicall.userProfile().subscribe({
+      next:res=>{
+        this.user=res
+        console.log(this.user); 
+      },
+      error:err=>this.user=[]
+    })
+  }
 
   beAnOwner(){
 

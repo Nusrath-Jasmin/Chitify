@@ -52,6 +52,7 @@
           <a href="" class="text-[12px]" [routerLink]="'/forgot-password'">Forgot Password?</a>
           </div>
           <p *ngIf="error" class="text-red-700">Cant login Try Again!</p>
+          <app-spinner *ngIf="isLoading"></app-spinner>
         </form>
       </div>
     </div>
