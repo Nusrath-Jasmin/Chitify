@@ -1,0 +1,29 @@
+/* alert.component.css */
+.alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px 40px 10px 15px; /* Added additional padding for the close button */
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    display: flex; /* Added to enable flexbox layout */
+    align-items: center; /* Vertically center items */
+    max-width: 300px; /* Adjust the max-width to fit your design */
+  }
+  
+  .close {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #721c24;
+  }
+  
+  .message {
+    flex-grow: 1; /* Allow the message to take up remaining space */
+    text-align: center; /* Center the text horizontally */
+  }
+  

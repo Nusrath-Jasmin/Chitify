@@ -10,6 +10,7 @@ export class OpenChittiesComponent implements OnInit {
 
   chitties: any[] = [];
   buttonText="Request to Join"
+  isLoading=false
 
   constructor(private apiService: apiCall) { }
   
@@ -44,7 +45,9 @@ export class OpenChittiesComponent implements OnInit {
   }
 
   submit(id:string){
+    this.isLoading=true
     const data={id:id}
     this.apiService.SubmitRequest(data).subscribe(res=>this.fetchData())
+    this.isLoading=false
   }
 }

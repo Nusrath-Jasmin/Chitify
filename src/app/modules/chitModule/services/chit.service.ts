@@ -163,19 +163,21 @@ rejectInvitation(data:any):Observable<any>{
 
 updateProfile(data:any):Observable<any>{
   const endpoint = `${this.apiUrl}/user/updateProfile`; 
-  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
   return this.http.post<any>(endpoint,data)
 }
 
 userProfile():Observable<any>{
   const endpoint = `${this.apiUrl}/user/userProfile`; 
-  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
   return this.http.get<any>(endpoint)
 }
 
 JoinedChits():Observable<any>{
   const endpoint = `${this.apiUrl}/user/allJoinedChits`; 
-  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  return this.http.get<any>(endpoint)
+}
+
+getMonthlyStatus(chitId:string):Observable<any>{
+  const endpoint = `${this.apiUrl}/user/getMonthlyStatus/${chitId}`; 
   return this.http.get<any>(endpoint)
 }
 }

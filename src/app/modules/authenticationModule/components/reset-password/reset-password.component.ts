@@ -14,17 +14,20 @@ export class ResetPasswordComponent {
   form!: any;
   error!: boolean;
   phone!:number
+  isLoading=false
 
   constructor(private apiCallService: apiCall, private router: Router,private dataservice:SignupdataService) {}
 
   checkPasswordMatch() {}
 
   onSubmit(form: NgForm): void {
+    this.isLoading=true
     console.log(form.value);
     this.form = form.value;
     this.dataservice.phone$.subscribe(data=>this.phone=data)
     this.apiCallService.UpdatePassword({phone:this.phone,...form.value}).subscribe({
       next: (response) => {
+        this.isLoading=false
         if (response.updated) this.router.navigate(['/login']);
         else this.error = true;
       },

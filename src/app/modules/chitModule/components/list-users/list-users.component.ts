@@ -12,6 +12,7 @@ export class ListUsersComponent implements OnInit {
   userlist:any[]=[]
   user!:any
   deleted=false
+  isLoading=false
 
   constructor(private apiservice:apiCall,private dataservice:DataService){}
   ngOnInit(): void {
@@ -38,9 +39,11 @@ refresh(){
     })
   }
   remove(userId:string){
+    this.isLoading=true
     const data={userId,chitId:this.chitId}
     this.apiservice.removeUser(data).subscribe({
       next:res=>{
+        this.isLoading=false
         if(res.delete){
           this.deleted=true
           this.refresh()

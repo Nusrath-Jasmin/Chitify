@@ -9,10 +9,14 @@ import { SignupdataService } from 'src/app/modules/authenticationModule/services
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
 })
+
 export class SignupComponent {
   response!: any;
   form!: any;
   error!: boolean;
+  isLoading=false;
+  passwordError="Password must be 8 characters and include uppercase & lowerase letters,number & a special character.";
+  passwordMatchError="Passwords does not match";
 
   constructor(
     private apiCallService: apiCall,
@@ -25,9 +29,10 @@ export class SignupComponent {
   onSubmit(form: NgForm): void {
     console.log(form.value);
     this.form = form.value;
-
+    this.isLoading=true
     this.apiCallService.createUser(form.value).subscribe({
       next: (response) => {
+        this.isLoading=false
         // Handle successful registration response
         console.log('User registered successfully', response);
         this.response = response;

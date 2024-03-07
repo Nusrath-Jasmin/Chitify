@@ -18,7 +18,7 @@ export class LoginComponent {
   ) {}
   error!: boolean;
   isLoading: boolean = false;
-
+  errorMessage="Cant login Try Again!"
 
   onSubmit(form: NgForm) {
     console.log('Form submitted!');
@@ -46,5 +46,9 @@ export class LoginComponent {
         this.error = error;
       },
     });
+  }
+
+  onAlertClosed(){
+    this.error=false
   }
 }

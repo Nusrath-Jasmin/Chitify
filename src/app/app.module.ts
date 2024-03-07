@@ -9,10 +9,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { TokenInterceptorService } from './services/interceptor.service';
-import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
-  declarations: [AppComponent, FooterComponent, HomeComponent, SpinnerComponent,],
+  declarations: [AppComponent, FooterComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -21,7 +20,6 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     HttpClientModule,
   ],
   exports:[
-    // SpinnerComponent
   ],
   providers: [
     {

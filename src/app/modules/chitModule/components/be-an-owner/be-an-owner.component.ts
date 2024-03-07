@@ -12,6 +12,7 @@ export class BeAnOwnerComponent implements OnInit{
   constructor(private apicall:apiCall,private dataService:DataService){}
   public submitted=false
   public owner!:boolean
+  isLoading=false
 
   ngOnInit(): void {
     this.apicall.RequestSubmittedorNot().subscribe({
@@ -28,10 +29,12 @@ export class BeAnOwnerComponent implements OnInit{
   }
 
   submitForm(form:NgForm){
+    this.isLoading=true
     this.owner=false
     this.submitted=true
     this.apicall.applyForOwnerPosition(form.value).subscribe({
       next:(response)=>{
+        this.isLoading=false
         if(response.requestSaved){
           this.dataService.setData1(true)
         }else{

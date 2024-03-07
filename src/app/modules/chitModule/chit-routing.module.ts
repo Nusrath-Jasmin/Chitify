@@ -12,6 +12,8 @@ import { ListUsersComponent } from './components/list-users/list-users.component
 import { AddUsersComponent } from './components/add-users/add-users.component';
 import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 import { JoinedChitsComponent } from './components/joined-chits/joined-chits.component';
+import { InvitationToJoinComponent } from './components/invitation-to-join/invitation-to-join.component';
+import { PaymentDetailsComponent } from './components/payment-details/payment-details.component';
 
 const routes: Routes = [
   {
@@ -27,7 +29,9 @@ const routes: Routes = [
       { path:'list-users',component:ListUsersComponent},
       { path:'addusers', component:AddUsersComponent},
       { path:'update-profile',component:UpdateProfileComponent},
-      { path:'joined-chits',component:JoinedChitsComponent}
+      { path:'joined-chits',component:JoinedChitsComponent,children:[]},
+      { path:'invitation-to-join',component:InvitationToJoinComponent},
+      {path:'payment-details',component:PaymentDetailsComponent}
     ],
   },
   { path: 'email-otp',component:EmailOtpComponent}

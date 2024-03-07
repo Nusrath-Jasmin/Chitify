@@ -9,6 +9,7 @@ import { RequestsComponent } from './components/requests/requests.component';
 import { DataService } from './services/data.service';
 import { AllChitsComponent } from './components/all-chits/all-chits.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
+import { sharedModule } from '../sharedModule/sharedModule.module';
 
 
 
@@ -23,7 +24,8 @@ import { AllUsersComponent } from './components/all-users/all-users.component';
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    sharedModule
   ],
   providers:[
     AdminApiService,

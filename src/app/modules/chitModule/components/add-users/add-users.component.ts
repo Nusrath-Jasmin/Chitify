@@ -13,6 +13,7 @@ export class AddUsersComponent {
   user!:any
   message=false
   messgaeText=""
+  isLoading=false
 
   constructor(private apiservice:apiCall,private dataservice:DataService){}
   ngOnInit(): void {
@@ -30,9 +31,11 @@ refresh(){
 }
 
   add(id:string){
+    this.isLoading=true
     const data={chitId:this.chitId, invitedUserId :id}
     this.apiservice.sendInvitation(data).subscribe({
       next:res=>{
+        this.isLoading=false
         this.message=true
         console.log(res);
         const userIndex = this.userlist.findIndex(item => item.user._id === id);

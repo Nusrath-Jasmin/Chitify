@@ -9,6 +9,8 @@ export interface Chit {
   startDate: string;
   requests?: any;
   noOfRequest?: number;
+  lotDate:number;
+  StartingMonth:string;
 }
 
 import { Component, OnInit } from '@angular/core';
@@ -53,6 +55,8 @@ export class OwnedChittiesComponent implements OnInit {
       participants: [this.chitToUpdate?.participants, Validators.required],
       chitType: [this.chitToUpdate?.chitType, Validators.required],
       startDate: [this.chitToUpdate?.startDate, Validators.required],
+      lotDate: [this.chitToUpdate?.lotDate, Validators.required],
+      StartingMonth: [this.chitToUpdate?.StartingMonth, Validators.required],
     });
   }
 

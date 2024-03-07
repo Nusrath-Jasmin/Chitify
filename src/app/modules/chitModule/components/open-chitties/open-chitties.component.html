@@ -52,6 +52,7 @@
           >
           {{ chitty.isParticipant ? 'Joined' : (chitty.isRequested && chitty.status === 'rejected') ? 'Rejected' : chitty.isRequested ? 'Requested' : 'Join'}}
         </button>
+        <app-spinner *ngIf="isLoading"></app-spinner>
         </td>
       </tr>
     </tbody>

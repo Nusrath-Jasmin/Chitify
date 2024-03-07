@@ -18,6 +18,9 @@ import { ListUsersComponent } from './components/list-users/list-users.component
 import { AddUsersComponent } from './components/add-users/add-users.component';
 import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 import { JoinedChitsComponent } from './components/joined-chits/joined-chits.component';
+import { sharedModule } from '../sharedModule/sharedModule.module';
+import { InvitationToJoinComponent } from './components/invitation-to-join/invitation-to-join.component';
+import { PaymentDetailsComponent } from './components/payment-details/payment-details.component';
 
 
 @NgModule({
@@ -36,12 +39,15 @@ import { JoinedChitsComponent } from './components/joined-chits/joined-chits.com
     AddUsersComponent,
     UpdateProfileComponent,
     JoinedChitsComponent,
+    InvitationToJoinComponent,
+    PaymentDetailsComponent,
   ],
   imports: [
     UserRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    sharedModule
   ],
   providers:[
     DataService,
