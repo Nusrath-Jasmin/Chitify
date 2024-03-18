@@ -18,6 +18,7 @@
                     Total Amount:{{item.totalAmount}} <br>
                     Duration:{{item.duration}} <br>
                     No of Participants:{{item.participants}}</td>
+                    <td><button class="bg-blue-600 p-4 rounded-xl" [routerLink]="['/chat']"  [queryParams]="{ param1: item._id,userType: 'user' }">Chat with Owner</button></td>
                     <td><button class="bg-blue-600 p-4 rounded-xl" [routerLink]="['/user/home/payment-details']"  (click)="setChitId(item._id,item.monthlyPayment)">Payment Details</button></td>
                 </tr>
             </ng-container>

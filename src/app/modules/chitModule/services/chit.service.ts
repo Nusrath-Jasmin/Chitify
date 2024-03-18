@@ -180,4 +180,21 @@ getMonthlyStatus(chitId:string):Observable<any>{
   const endpoint = `${this.apiUrl}/user/getMonthlyStatus/${chitId}`; 
   return this.http.get<any>(endpoint)
 }
+
+createRazPayOrder(data:any):Observable<any>{
+  const endpoint = `${this.apiUrl}/user/createOrder`; 
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  return this.http.post<any>(endpoint,data, { headers});
+}
+
+onsuccessPayment(data:any):Observable<any>{
+  const endpoint = `${this.apiUrl}/user/onSuccessPayment`; 
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  return this.http.post<any>(endpoint,data, { headers});
+}
+
+getUSerWhoPaid(data:any):Observable<any>{
+  const endpoint = `${this.apiUrl}/user/getUsersWhoPaid/${data}`; 
+  return this.http.get<any>(endpoint);
+}
 }
