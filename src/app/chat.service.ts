@@ -17,7 +17,7 @@ export class ChatService {
   }
   
   getMessage(): Observable<any> {
-    console.log(this.socket.fromEvent('message').subscribe());
+    console.log("fromevent",this.socket.fromEvent('message').subscribe());
     
     return this.socket.fromEvent('message');
   }

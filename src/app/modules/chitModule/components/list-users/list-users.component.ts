@@ -13,7 +13,8 @@ export class ListUsersComponent implements OnInit {
   user!:any
   deleted=false
   isLoading=false
-
+  selecteduserId:any
+  
   constructor(private apiservice:apiCall,private dataservice:DataService){}
   ngOnInit(): void {
    this.refresh()
@@ -30,6 +31,7 @@ refresh(){
 }
 
   getUser(userId:string){
+    this.selecteduserId=userId
     this.apiservice.getUser(userId).subscribe({
       next:res=>{
         this.user=res

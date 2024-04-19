@@ -197,4 +197,9 @@ getUSerWhoPaid(data:any):Observable<any>{
   const endpoint = `${this.apiUrl}/user/getUsersWhoPaid/${data}`; 
   return this.http.get<any>(endpoint);
 }
+
+getWinners(data:any):Observable<any>{
+  const endpoint = `${this.apiUrl}/user/getWinners/${data}`; 
+  return this.http.get<any>(endpoint);
+}
 }
