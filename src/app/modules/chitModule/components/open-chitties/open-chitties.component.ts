@@ -10,6 +10,7 @@ export class OpenChittiesComponent implements OnInit {
 
   chitties: any[] = [];
   buttonText="Request to Join"
+  isLoading=false
 
   constructor(private apiService: apiCall) { }
   
@@ -19,20 +20,34 @@ export class OpenChittiesComponent implements OnInit {
 
   fetchData(){
     this.apiService.OpenChitties().subscribe((chitties: any[]) => {
+      console.log(chitties);
+      
       chitties.forEach(chitty => {
-        this.apiService.IsAMember().subscribe((status: any) => {
+        this.apiService.IsAMember(chitty._id).subscribe((status: any) => {
           chitty.isParticipant = status.participant; 
         });
-        this.apiService.IsRequested().subscribe((status: any) => {
-          chitty.isRequested = status.request; 
-        });
+
+        // this.apiService.IsRequested().subscribe((status: any) => {
+        //   chitty.isRequested = status.request; 
+        //   console.log(status); 
+        // });
+
+        this.apiService.IsRequested(chitty._id).subscribe((status: any) => {
+          chitty.isRequested = status.request;
+          chitty.status = status.data[0]?.requestedUsers[0]?.status; // Assuming status is available at index 0
+          console.log(chitty.status);
+      });
       });
       this.chitties = chitties;
+      console.log(chitties);
+      
     });
   }
 
   submit(id:string){
+    this.isLoading=true
     const data={id:id}
     this.apiService.SubmitRequest(data).subscribe(res=>this.fetchData())
+    this.isLoading=false
   }
 }

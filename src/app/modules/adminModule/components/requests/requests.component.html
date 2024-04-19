@@ -36,12 +36,14 @@
         >
           Accept
         </button>
+        <app-spinner *ngIf="isLoading"></app-spinner>
         <button
         class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:bg-green-600"
         (click)="reject(request._id)"
       >
         Reject
       </button>
+      <app-spinner *ngIf="isLoading"></app-spinner>
         </td>
       </tr>
       <tr *ngIf="seeMoreClicked">

@@ -1,0 +1,18 @@
+<div class="w-full flex items-center justify-center">
+    <table class="w-3/4 border border-gray-500">
+        <thead class="bg-gray-200 text-center">
+            <tr>
+                <th class="px-4 py-2">Name</th>
+                <th class="px-4 py-2">Phone</th>
+                <th class="px-4 py-2">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of users; let index = index" class="{{ index % 2 === 0 ? 'bg-gray-100' : 'bg-white' }} text-center">
+                <td class="px-4 py-2">{{ item.firstName }} {{ item.lastName }}</td>
+                <td class="px-4 py-2">{{ item.phone }}</td>
+                <td class="px-4 py-2">{{ item.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

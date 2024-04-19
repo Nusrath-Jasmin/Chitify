@@ -1,0 +1,21 @@
+<div class="max-w-md mx-auto mt-8">
+    <h2 class="text-2xl font-bold mb-4">Update Profile</h2>
+    <form [formGroup]="FMbuilder" (ngSubmit)="onSubmit()" class="space-y-4">
+      <div class="flex items-center space-x-4">
+        <label for="profilePhoto" class="w-32 text-gray-700">Profile Photo:</label>
+        <input type="file" id="profilePhoto" formControlName="file" accept="file/*" (change)="onFileChange($event)">
+      </div>
+      <div class="flex items-center space-x-4">
+        <label for="firstName" class="w-32 text-gray-700">First Name:</label>
+        <input type="text" id="firstName" formControlName="firstName" class="flex-1 px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg">
+      </div>
+      <div class="flex items-center space-x-4">
+        <label for="lastName" class="w-32 text-gray-700">Last Name:</label>
+        <input type="text" id="lastName" formControlName="lastName" class="flex-1 px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg">
+      </div>
+      <div class="flex justify-end">
+        <button type="submit" class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Update</button>
+      </div>
+    </form>
+  </div>
+  

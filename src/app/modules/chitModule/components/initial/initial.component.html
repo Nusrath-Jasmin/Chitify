@@ -1,1 +1,25 @@
-<div class="h-[600px] bg-slate-500">Initial Page</div>
+<div *ngFor="let item of list" class="w-1/2 shadow-lg shadow-black p-10">
+  <p>
+    Your chit {{ item.chitName }} Lotting Date id {{ item.lotDate }} of each
+    Month
+  </p>
+</div>
+
+<a href=""></a>
+<div class="flex justify-center items-center h-screen">
+  <div *ngIf="loading; else content" class="flex items-center">
+    <!-- Show spinner while loading -->
+    <div class="spinner-border text-blue-500 mr-2" role="status">
+      <span class="">Loading...</span>
+    </div>
+  </div>
+  <ng-template #content>
+    <!-- Show selected user -->
+    <div *ngIf="selectedUser" class="user-details">
+      <h2 class="text-2xl font-bold mb-4">User Details</h2>
+      <p><strong>Name:</strong> {{ selectedUser.firstName }}</p>
+      <p><strong>Email:</strong> {{ selectedUser.email }}</p>
+      <!-- Add more user details as needed -->
+    </div>
+  </ng-template>
+</div>

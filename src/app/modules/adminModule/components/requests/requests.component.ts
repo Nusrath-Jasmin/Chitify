@@ -14,6 +14,8 @@ export class RequestsComponent implements OnInit{
   seeMoreClicked=false
   buttonText='See More'
   res:any
+  isLoading=false
+
   ngOnInit(): void {
     this.dataService.RequestArray$.subscribe(data=>this.requests=data)
   }
@@ -47,9 +49,11 @@ export class RequestsComponent implements OnInit{
   }
 
   acceptRequest(id:string){
+    this.isLoading=true
     const data={requestid:id}
     this.apiService.AddAsOwner(data).subscribe({
       next:(res)=>{
+        this.isLoading=false
         console.log(res)
         this.refreshComponentData()
       },
@@ -60,9 +64,11 @@ export class RequestsComponent implements OnInit{
   }
 
   reject(id:string){
+    this.isLoading=true
     const data={requestid:id}
     this.apiService.RejectRequest(data).subscribe({
       next:(res)=>{
+        this.isLoading=false
         console.log(res)
         this.refreshComponentData()
       },

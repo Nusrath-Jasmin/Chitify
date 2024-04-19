@@ -32,4 +32,14 @@ export class AdminApiService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<any>(endpoint,data,{ headers });
   }
+
+  getUsers():Observable<any>{
+    const endpoint = `${this.apiUrl}/admin/list-users`; 
+    return this.http.get<any>(endpoint);
+  }
+  
+  getChits():Observable<any>{
+    const endpoint = `${this.apiUrl}/admin/list-chits`; 
+    return this.http.get<any>(endpoint);
+  }
 }

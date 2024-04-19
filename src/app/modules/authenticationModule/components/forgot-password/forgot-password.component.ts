@@ -12,6 +12,7 @@ import { SignupdataService } from 'src/app/modules/authenticationModule/services
 })
 export class ForgotPasswordComponent implements OnInit{
   
+  isLoading=false
   forgotPasswordForm!: FormGroup;
   message: string = '';
 
@@ -29,10 +30,12 @@ export class ForgotPasswordComponent implements OnInit{
 
   onSubmit(){
     if (this.forgotPasswordForm.valid) {
+      this.isLoading=true
       const phoneNumber = this.forgotPasswordForm.get('phone')!.value;
       console.log(phoneNumber);
       this.apicall.forgotPassword({phone:phoneNumber}).subscribe({
         next:(response)=>{
+          this.isLoading=false
           console.log(response); 
           this.dataservice.setData(response.phone)
           if(response.otpsend){

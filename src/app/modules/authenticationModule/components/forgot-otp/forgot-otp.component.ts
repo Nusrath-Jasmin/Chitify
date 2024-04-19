@@ -11,6 +11,8 @@ import { SignupdataService } from 'src/app/modules/authenticationModule/services
 })
 export class ForgotOtpComponent implements OnInit {
 
+  isLoading=false
+
   @ViewChild('otp1') otp1!: ElementRef<HTMLInputElement>;
   @ViewChild('otp2') otp2!: ElementRef<HTMLInputElement>;
   @ViewChild('otp3') otp3!: ElementRef<HTMLInputElement>;
@@ -48,12 +50,14 @@ export class ForgotOtpComponent implements OnInit {
 
   submitOtp() {
     if (this.forgotPasswordForm.valid) {
+      this.isLoading=true
       this.dataservice.phone$.subscribe(data=>this.phone=data)
       // Construct OTP from form values
       const otp = Object.values(this.forgotPasswordForm.value).join('');
       console.log('OTP:', otp);
       this.apicall.VerifyUser({phone:this.phone,otp:otp}).subscribe({
         next:(response)=>{
+          this.isLoading=false
           if(response.otpVerified){
             this.router.navigate(['/reset-password'])
           }else{

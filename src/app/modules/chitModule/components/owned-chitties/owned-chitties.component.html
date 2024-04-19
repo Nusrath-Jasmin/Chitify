@@ -17,23 +17,25 @@
       <tr *ngFor="let chitty of chitties; let i = index">
         <td class="border px-4 py-2 text-center">{{ i + 1 }}</td>
         <td class="border px-4 py-2 text-left text-base text-blue-700">
-          <p>Chit Name:{{ chitty.chitName }}</p>
+          <p class="underline cursor-pointer" [routerLink]="['/user/home/list-users']" (click)="ShowChit(chitty._id)">Chit Name:{{ chitty.chitName }}</p>
           <p>Chit Duratuon:{{ chitty.duration }}</p>
           <p>Total Amount:{{ chitty.totalAmount }}</p>
           <p>Monthly Payment:{{ chitty.monthlyPayment }}</p>
           <p>No of Participants:{{ chitty.participants }}</p>
           <p>Chit Type:{{ chitty.chitType }}</p>
           <p>Start Date:{{ chitty.startDate }}</p>
+          <p>Lot Date:{{chitty.lotDate}} of each month</p>
         </td>
         <td>
-          <div class="flex items-center gap-1 cursor-pointer">
-            <a (click)="clicked(chitty.requests)" >Requests</a>
+          <div class="flex items-center gap-1 cursor-pointer text-blue-600 underline">
+            <a (click)="clicked(chitty.requests,chitty._id)" >Requests</a>
             <div
               class="w-5 h-5 bg-red-700 rounded-full text-white flex items-center justify-center cursor-pointer"
             >
-              {{ noOfRequest }}
+              {{ chitty.noOfRequest }}
             </div>
           </div>
+          <a class="text-blue-600 underline" [routerLink]="['/user/home/addusers']" (click)="addusers(chitty._id)" >Add User</a>
         </td>
         <td class="border px-4 py-2 text-center">
           <button
@@ -50,7 +52,10 @@
           </button>
           <p *ngIf="message">Cant Delete Chit</p>
         </td>
-      </tr>  
+      </tr> 
+   <tr class="absolute">   
+
+</tr>
     </tbody>
   </table>
 </div>
@@ -173,6 +178,32 @@
             required
           />
         </div>
+        <div>
+          <label for="lotDate" class="block text-gray-700"
+            >Lot Date:</label
+          >
+          <input
+            type="number"
+            id="lotDate"
+            formControlName="lotDate"
+            value="{{ chitToUpdate?.lotDate }}"
+            class="mt-1 block w-full h-12 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            required
+          />
+        </div>
+        <div>
+          <label for="StartingMonth" class="block text-gray-700"
+            >Starting Month:</label
+          >
+          <input
+            type="month"
+            id="StartingMonth"
+            formControlName="StartingMonth"
+            value="{{ chitToUpdate?.StartingMonth }}"
+            class="mt-1 block w-full h-12 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            required
+          />
+        </div>
       </div>
 
       <div class="mt-6">
@@ -192,7 +223,7 @@
     
 <div *ngIf="requestClicked" class="mt-4">
   <div *ngFor="let request of requests" class="border border-gray-200 p-4 rounded-lg mb-4">
-    <p class="text-lg font-semibold">User ID: {{ request.id }}</p>
+    <p class="text-lg font-semibold">User ID: {{ request.id.user }}</p>
     <div *ngIf="request.details" class="mt-2">
       <p class="text-gray-700">First Name: {{ request.details.firstName }}</p>
       <p class="text-gray-700">Last Name: {{ request.details.lastName }}</p>
@@ -200,8 +231,8 @@
       <p class="text-gray-700">Phone: {{ request.details.phone }}</p>
     </div>
     <div class="mt-4">
-      <button (click)="accept(request.id)" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-600 mr-2">Accept</button>
-      <button (click)="reject(request.id)" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:bg-red-600">Reject</button>
+      <button (click)="accept(request.id.user,request.details.chitId)" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-600 mr-2">Accept</button>
+      <button (click)="reject(request.id.user,request.details.chitId)" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:bg-red-600">Reject</button>
     </div>
   </div>
 </div>

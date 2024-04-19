@@ -1,0 +1,22 @@
+<h3>You have {{noOfInvitation}} pending Invitation to Join</h3>
+<div class="mt-4">
+    <h2 class="text-lg font-semibold mb-2">Invitations</h2>
+    <ul class="divide-y divide-gray-200">
+      <li *ngFor="let invitation of invitations" class="py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+          <p class="text-gray-800">Chit ID: {{ invitation.chitId }}</p>
+          <p class="text-gray-700">Invited User ID: {{ invitation.invitedUserId }}</p>
+          <p class="text-gray-700">Status: {{ invitation.status }}</p>
+        </div>
+        <button class="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 focus:outline-none focus:bg-purple-600" (click)="acceptInvitation(invitation._id)">
+          Accept
+        </button>
+        <app-spinner *ngIf="isLoading"></app-spinner>
+        <button class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none focus:bg-red-600" (click)="rejectInvitation(invitation._id)">
+          Reject
+        </button>
+        <app-spinner *ngIf="isLoading"></app-spinner>
+      </li>
+    </ul>
+  </div>
+  

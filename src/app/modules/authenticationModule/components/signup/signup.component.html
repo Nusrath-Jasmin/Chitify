@@ -61,15 +61,14 @@
           pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
           class="p-3 w-3/4 shadow-lg shadow-blue-900"
         />
-        <small
+        <app-alert
           *ngIf="
             signupForm.controls['password']?.invalid &&
             (signupForm.controls['password'].dirty ||
               signupForm.controls['password'].touched)
           "
-          class="text-white px-4"
-          >Password must be 8 characters and include uppercase & lowerase
-          letters,number & a special character.</small
+           [message]="passwordError"
+          ></app-alert
         >
         <input
           type="password"
@@ -81,14 +80,14 @@
           (blur)="checkPasswordMatch()"
           class="p-3 w-3/4 shadow-lg shadow-blue-900"
         />
-        <small
+        <app-alert
           *ngIf="
             signupForm.controls['confirmPassword']?.value !=
               signupForm.controls['password']?.value &&
             signupForm.controls['confirmPassword'].touched
           "
-          class="text-white"
-          >Passwords do not match</small
+           [message]="passwordMatchError"
+          ></app-alert
         >
         <input
           type="tel"
@@ -106,13 +105,13 @@
         >
           Submit
         </button>
-        <p class="text-white mt-4">
+        <app-spinner *ngIf="isLoading"></app-spinner>
+        <p class="text-blue-950 mt-4">
           Already have an account?<a [routerLink]="'/login'" class="underline mt-96">Login</a>
           Here
         </p>
-        <p style="color: red" *ngIf="response?.exist">
-          {{ response?.message }}
-        </p>
+        <app-alert  *ngIf="response?.exist" [message]="response?.message">
+        </app-alert>
       </form>
     </div>
   </div>

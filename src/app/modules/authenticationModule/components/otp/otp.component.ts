@@ -23,6 +23,7 @@ export class OtpComponent implements OnInit {
   data!: any;
   userData!: any;
   otperror!: boolean;
+  isLoading=false
 
   constructor(
     private apiCall: apiCall,
@@ -46,14 +47,14 @@ export class OtpComponent implements OnInit {
   onSubmit(form:NgForm) {
     const { otp1val, otp2val, otp3val, otp4val, otp5val, otp6val } = form.value
     const enteredOTP = otp1val + otp2val + otp3val + otp4val + otp5val + otp6val;
-
+    this.isLoading=true
     console.log(enteredOTP);
     this.data = { ...this.userData, otp: enteredOTP };
     console.log('data for otp verification', this.data);
     this.apiCall.verifyOtp(this.data)
     .subscribe((res) => {
       console.log('response from otp', res);
-
+      this.isLoading=false
       this.authservice.saveToken(res.token);
 
         if (this.authservice.isAuthenticated()) {

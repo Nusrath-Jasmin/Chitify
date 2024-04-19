@@ -7,6 +7,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AdminApiService } from './services/adminApi.service';
 import { RequestsComponent } from './components/requests/requests.component';
 import { DataService } from './services/data.service';
+import { AllChitsComponent } from './components/all-chits/all-chits.component';
+import { AllUsersComponent } from './components/all-users/all-users.component';
+import { sharedModule } from '../sharedModule/sharedModule.module';
 
 
 
@@ -15,11 +18,14 @@ import { DataService } from './services/data.service';
     HomeComponent,
     NavbarComponent,
     SidebarComponent,
-    RequestsComponent
+    RequestsComponent,
+    AllChitsComponent,
+    AllUsersComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    sharedModule
   ],
   providers:[
     AdminApiService,

@@ -21,6 +21,7 @@ export class EmailOtpComponent {
   data!: any;
   userData!: any;
   otperror!: boolean;
+  isLoading=false
 
   constructor(
     private apiCall:apiCall,
@@ -34,12 +35,14 @@ export class EmailOtpComponent {
   }
 
   onSubmit(form:NgForm) {
+    this.isLoading=true
     const { otp1val, otp2val, otp3val, otp4val, otp5val, otp6val } = form.value
     const enteredOTP = otp1val + otp2val + otp3val + otp4val + otp5val + otp6val;
     this.data = { otp: enteredOTP };
     console.log('data for otp verification', this.data);
     this.apiCall.verifyEmailOtp(this.data)
     .subscribe((res) => {
+      this.isLoading=false
       console.log('response from otp', res);
       if (res.error) {
         this.otperror = true;

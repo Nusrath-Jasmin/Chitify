@@ -1,0 +1,56 @@
+<div  >
+<h2 class="text-lg font-semibold mb-2">List of Joined Chits</h2>
+<div class="divide-y divide-gray-200">
+    <table class="w-full divide-y divide-gray-200 border-[2px] border-slate-400">
+        <thead>
+            <tr class="text-center">
+                <th class="px-4 py-2">No</th>
+                <th class="px-4 py-2">ChitId</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let item of list; let i = index;">
+                <tr class="text-center">
+                    <td class="px-4 py-2">{{i+1}}</td>
+                    <td class="px-4 py-2">Chit Name:{{item.chitName}} <br>
+                    Monthly Payment:{{item.monthlyPayment}} <br>
+                    Total Amount:{{item.totalAmount}} <br>
+                    Duration:{{item.duration}} <br>
+                    No of Participants:{{item.participants}}</td>
+                    <td><button class="bg-blue-600 p-4 rounded-xl" (click)="showing(item._id)">Show monthy winners</button></td>
+                    <td><button class="bg-blue-600 p-4 rounded-xl" [routerLink]="['/chat']"  [queryParams]="{ param1: item._id,userType: 'user' }">Chat with Owner</button></td>
+                    <td><button class="bg-blue-600 p-4 rounded-xl" [routerLink]="['/user/home/payment-details']"  (click)="setChitId(item._id,item.monthlyPayment)">Payment Details</button></td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="show" class="mt-16">
+    <div class="overflow-x-auto flex flex-col items-center">
+        <table class="table-auto w-full border-collapse border border-gray-500">
+          <thead>
+            <tr class="bg-gray-200">
+              <th class="px-4 py-2">User ID</th>
+              <th class="px-4 py-2">First Name</th>
+              <th class="px-4 py-2">Last Name</th>
+              <th class="px-4 py-2">Email</th>
+              <th class="px-4 py-2">Month</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="hover:bg-gray-100" *ngFor="let data of winners">
+              <td class="border px-4 py-2 text-center">{{ data.userId }}</td>
+              <td class="border px-4 py-2 text-center">{{ data.firstName }}</td>
+              <td class="border px-4 py-2 text-center">{{ data.lastName }}</td>
+              <td class="border px-4 py-2 text-center">{{ data.email }}</td>
+              <td class="border px-4 py-2 text-center ">{{ data.month }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="bg-red-500 p-1 rounded-md mx-auto text-white" (click)="close()">close</button>
+      </div>
+      
+</div>
+</div>
+

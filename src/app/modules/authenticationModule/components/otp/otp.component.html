@@ -68,6 +68,7 @@
     >
       Submit
     </button>
+    <app-spinner *ngIf="isLoading"></app-spinner>
   </form>
     <p *ngIf="otperror" class="text-white">Incorrect OTP</p>
   </div>

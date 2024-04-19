@@ -75,14 +75,14 @@ export class apiCall {
     return this.http.get<any>(endpoint, { headers});
   }
 
-  IsAMember():Observable<any>{
-    const endpoint = `${this.apiUrl}/user/IsAMember`; 
+  IsAMember(id:string):Observable<any>{
+    const endpoint = `${this.apiUrl}/user/IsAMember/${id}`; 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.get<any>(endpoint, { headers});
   }
 
-  IsRequested():Observable<any>{
-    const endpoint = `${this.apiUrl}/user/IsRequested`; 
+  IsRequested(id:string):Observable<any>{
+    const endpoint = `${this.apiUrl}/user/IsRequested/${id}`; 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.get<any>(endpoint, { headers});
   }
@@ -105,4 +105,101 @@ export class apiCall {
     return this.http.get<any>(endpoint, { headers});
   }
 
+  AcceptRequest(data:any):Observable<any>{
+    console.log(data);
+    const endpoint = `${this.apiUrl}/user/AcceptRequest`; 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(endpoint,data,{ headers});
+  }
+
+  RejectRequest(data:any):Observable<any>{
+    console.log(data);
+    const endpoint = `${this.apiUrl}/user/RejectRequest`; 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put<any>(endpoint,data,{ headers});
+  }
+
+  getParticipants(id:string):Observable<any>{
+    const endpoint = `${this.apiUrl}/user/getParticipants/${id}`; 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get<any>(endpoint, { headers});
+  }
+
+  removeUser(data:any):Observable<any>{
+    const endpoint = `${this.apiUrl}/user/removeUser`; 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(endpoint,data, { headers});
+  }
+
+  getUsersToAdd(id:string):Observable<any>{
+    const endpoint = `${this.apiUrl}/user/getUsersToAdd/${id}`; 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get<any>(endpoint,   { headers});
+  }
+
+  sendInvitation(data:any):Observable<any>{
+    const endpoint = `${this.apiUrl}/user/sendInvitation`; 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(endpoint,data, { headers});
+  }
+
+  getInvitations():Observable<any>{
+    const endpoint = `${this.apiUrl}/user/invitations`; 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get<any>(endpoint,   { headers});
+  }
+
+  acceptInvitation(data:any):Observable<any>{
+    const endpoint = `${this.apiUrl}/user/acceptInvitation`; 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(endpoint,data, { headers})
+}
+
+rejectInvitation(data:any):Observable<any>{
+  const endpoint = `${this.apiUrl}/user/rejectInvitation`; 
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  return this.http.post<any>(endpoint,data, { headers})
+}
+
+updateProfile(data:any):Observable<any>{
+  const endpoint = `${this.apiUrl}/user/updateProfile`; 
+  return this.http.post<any>(endpoint,data)
+}
+
+userProfile():Observable<any>{
+  const endpoint = `${this.apiUrl}/user/userProfile`; 
+  return this.http.get<any>(endpoint)
+}
+
+JoinedChits():Observable<any>{
+  const endpoint = `${this.apiUrl}/user/allJoinedChits`; 
+  return this.http.get<any>(endpoint)
+}
+
+getMonthlyStatus(chitId:string):Observable<any>{
+  const endpoint = `${this.apiUrl}/user/getMonthlyStatus/${chitId}`; 
+  return this.http.get<any>(endpoint)
+}
+
+createRazPayOrder(data:any):Observable<any>{
+  const endpoint = `${this.apiUrl}/user/createOrder`; 
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  return this.http.post<any>(endpoint,data, { headers});
+}
+
+onsuccessPayment(data:any):Observable<any>{
+  const endpoint = `${this.apiUrl}/user/onSuccessPayment`; 
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  return this.http.post<any>(endpoint,data, { headers});
+}
+
+getUSerWhoPaid(data:any):Observable<any>{
+  const endpoint = `${this.apiUrl}/user/getUsersWhoPaid/${data}`; 
+  return this.http.get<any>(endpoint);
+}
+
+getWinners(data:any):Observable<any>{
+  const endpoint = `${this.apiUrl}/user/getWinners/${data}`; 
+  return this.http.get<any>(endpoint);
+}
 }

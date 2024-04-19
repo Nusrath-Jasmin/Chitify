@@ -8,6 +8,12 @@ import { BeAnOwnerComponent } from './components/be-an-owner/be-an-owner.compone
 import { StartChittyComponent } from './components/start-chitty/start-chitty.component';
 import { OwnedChittiesComponent } from './components/owned-chitties/owned-chitties.component';
 import { OpenChittiesComponent } from './components/open-chitties/open-chitties.component';
+import { ListUsersComponent } from './components/list-users/list-users.component';
+import { AddUsersComponent } from './components/add-users/add-users.component';
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
+import { JoinedChitsComponent } from './components/joined-chits/joined-chits.component';
+import { InvitationToJoinComponent } from './components/invitation-to-join/invitation-to-join.component';
+import { PaymentDetailsComponent } from './components/payment-details/payment-details.component';
 
 const routes: Routes = [
   {
@@ -19,7 +25,13 @@ const routes: Routes = [
       { path: 'beanowner',component:BeAnOwnerComponent},
       { path:'start-chitty',component:StartChittyComponent},
       { path:'owned-chitties',component:OwnedChittiesComponent},
-      { path:'open-chitties',component:OpenChittiesComponent}
+      { path:'open-chitties',component:OpenChittiesComponent},
+      { path:'list-users',component:ListUsersComponent},
+      { path:'addusers', component:AddUsersComponent},
+      { path:'update-profile',component:UpdateProfileComponent},
+      { path:'joined-chits',component:JoinedChitsComponent,children:[]},
+      { path:'invitation-to-join',component:InvitationToJoinComponent},
+      {path:'payment-details',component:PaymentDetailsComponent}
     ],
   },
   { path: 'email-otp',component:EmailOtpComponent}

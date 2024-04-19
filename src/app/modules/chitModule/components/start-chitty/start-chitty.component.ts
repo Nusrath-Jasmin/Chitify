@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { apiCall } from '../../services/chit.service';
 
@@ -7,10 +7,21 @@ import { apiCall } from '../../services/chit.service';
   templateUrl: './start-chitty.component.html',
   styleUrls: ['./start-chitty.component.css']
 })
-export class StartChittyComponent {
+export class StartChittyComponent implements OnInit {
   buttonText="Submit"
-  buttonClass = ""; // Add a variable to hold the button's class
+  buttonClass = ""; 
+  owner!:any;
+
   constructor(private apiService:apiCall){}
+  ngOnInit(): void {
+    this.apiService.isOwner().subscribe({
+      next:(res)=>{
+        this.owner=res.owner
+        console.log(res);
+      },
+      error:(err)=>console.log(err)
+    })
+  }
 
   onsubmit(form:NgForm){
     this.apiService.RegisterChit(form.value).subscribe({

@@ -1,0 +1,20 @@
+<div class="mt-4">
+    <h2 class="text-lg font-semibold mb-2">List Of Users</h2>
+    <ul class="divide-y divide-gray-200">
+      <li *ngFor="let item of userlist" class="py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+          <p class="text-gray-800">User ID: {{ item.user._id }}</p>
+            <p class="text-gray-700">First Name: {{ item.user.firstName }}</p>
+            <p class="text-gray-700">Last Name: {{ item.user.lastName }}</p>
+            <p class="text-gray-700">Email: {{ item.user.email }}</p>
+            <p class="text-gray-700">Phone: {{ item.user.phone }}</p>
+          </div>
+        <button class="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 focus:outline-none focus:bg-purple-600" (click)="add(item.user._id)">
+          Add
+        </button>
+        <app-spinner *ngIf="isLoading"></app-spinner>
+        <p *ngIf="message" class="text-red-500">{{item.message}}</p>
+      </li>
+    </ul>
+  </div>
+  
