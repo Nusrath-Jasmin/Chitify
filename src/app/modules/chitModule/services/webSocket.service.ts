@@ -13,7 +13,7 @@ export class WebSocketService {
 
   connect(): void {
     // Replace 'ws://localhost:8080' with your WebSocket server URL
-    this.webSocketSubject = webSocket('ws://localhost:8080');
+    this.webSocketSubject = webSocket('ws://16.171.31.17');
 
     this.webSocketSubject.subscribe(
       message => this.messagesSubject.next(message),
